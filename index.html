@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Raza Digital Studio creates modern, responsive websites for growing businesses." />
+  <title>Raza Digital Studio | Modern Websites for Businesses</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #121212;
+      --surface-2: #181818;
+      --text: #f7f7f7;
+      --muted: #a7a7a7;
+      --line: rgba(255,255,255,.09);
+      --accent: #ffffff;
+      --shadow: 0 20px 70px rgba(0,0,0,.35);
+      --radius: 22px;
+      --max: 1160px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 75% 10%, rgba(255,255,255,.08), transparent 28%),
+        radial-gradient(circle at 10% 30%, rgba(255,255,255,.04), transparent 24%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(92%, var(--max)); margin: auto; }
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(10,10,10,.72);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .brand { font-weight: 800; letter-spacing: -.03em; }
+    .brand span { color: #aaa; font-weight: 500; }
+    .nav-links { display:flex; gap: 26px; color:#bdbdbd; font-size:14px; }
+    .nav-links a:hover { color: white; }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding: 13px 18px; border-radius: 999px; font-weight: 700; font-size: 14px;
+      border: 1px solid var(--line); transition: .25s ease; cursor:pointer;
+    }
+    .btn-primary { background:white; color:black; border-color:white; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,255,255,.12); }
+    .btn-secondary { color:white; background:transparent; }
+    .btn-secondary:hover { background:rgba(255,255,255,.06); }
+    .hero { padding: 100px 0 80px; }
+    .hero-grid { display:grid; grid-template-columns: 1.08fr .92fr; gap: 60px; align-items:center; }
+    .eyebrow {
+      display:inline-flex; padding:8px 12px; border:1px solid var(--line); border-radius:999px;
+      color:#c9c9c9; font-size:12px; margin-bottom:20px; background:rgba(255,255,255,.03);
+    }
+    h1 { font-size: clamp(44px, 7vw, 82px); line-height: .98; letter-spacing:-.055em; max-width: 760px; }
+    .hero-copy { margin-top: 24px; font-size: 18px; color: var(--muted); max-width: 650px; }
+    .hero-actions { display:flex; gap:12px; margin-top:30px; flex-wrap:wrap; }
+    .hero-note { margin-top:18px; font-size:13px; color:#777; }
+    .hero-visual {
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.10), rgba(255,255,255,.02)),
+        #0f0f0f;
+      border:1px solid var(--line); border-radius:32px; padding:20px; box-shadow:var(--shadow);
+      transform: rotate(1.2deg);
+    }
+    .browser { background:#090909; border:1px solid var(--line); border-radius:20px; overflow:hidden; }
+    .browser-top { display:flex; gap:7px; padding:14px; border-bottom:1px solid var(--line); }
+    .dot { width:9px; height:9px; border-radius:50%; background:#3a3a3a; }
+    .preview { padding:24px; }
+    .preview-hero { height:180px; border-radius:16px; background:linear-gradient(135deg,#222,#0d0d0d); border:1px solid var(--line); display:flex; align-items:end; padding:20px; }
+    .preview-title { font-size:30px; font-weight:800; letter-spacing:-.04em; }
+    .preview-row { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:12px; }
+    .preview-card { height:90px; border-radius:14px; background:#151515; border:1px solid var(--line); }
+    section { padding: 88px 0; }
+    .section-head { display:flex; justify-content:space-between; gap:30px; align-items:end; margin-bottom:40px; }
+    .kicker { color:#888; text-transform:uppercase; letter-spacing:.12em; font-size:12px; font-weight:700; }
+    h2 { margin-top:10px; font-size: clamp(34px, 5vw, 56px); letter-spacing:-.045em; line-height:1; }
+    .section-intro { color:var(--muted); max-width:520px; }
+    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .card {
+      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.02));
+      border:1px solid var(--line); border-radius:var(--radius); padding:24px;
+      transition:.25s ease;
+    }
+    .card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,.18); }
+    .icon { width:46px; height:46px; display:grid; place-items:center; border:1px solid var(--line); border-radius:14px; margin-bottom:24px; background:#0e0e0e; }
+    .card h3 { font-size:20px; margin-bottom:8px; }
+    .card p { color:var(--muted); font-size:14px; }
+    .work-grid { display:grid; grid-template-columns:1.15fr .85fr; gap:18px; }
+    .project { border-radius:var(--radius); border:1px solid var(--line); overflow:hidden; background:#111; }
+    .project-visual { min-height:280px; display:flex; align-items:end; padding:24px; background:linear-gradient(135deg,#1a1a1a,#0b0b0b); }
+    .project:nth-child(2) .project-visual { background:linear-gradient(135deg,#161616,#0d0d0d); }
+    .project:nth-child(3) .project-visual { background:linear-gradient(135deg,#1d1d1d,#0b0b0b); }
+    .project-meta { padding:22px; }
+    .tag { display:inline-flex; padding:6px 9px; border:1px solid var(--line); border-radius:999px; font-size:11px; color:#aaa; margin-bottom:10px; }
+    .project h3 { font-size:26px; margin-bottom:8px; }
+    .project p { color:var(--muted); font-size:14px; }
+    .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+    .step-num { font-size:12px; color:#777; }
+    .step h3 { margin:10px 0 8px; }
+    .price-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .price { position:relative; }
+    .price.featured { border-color:rgba(255,255,255,.28); box-shadow: 0 16px 50px rgba(0,0,0,.28); }
+    .price .label { font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:.12em; }
+    .amount { margin:12px 0 6px; font-size:40px; font-weight:800; letter-spacing:-.04em; }
+    .price ul { list-style:none; margin:20px 0 26px; color:#bbb; font-size:14px; }
+    .price li { padding:8px 0; border-bottom:1px solid var(--line); }
+
+    .showcase-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .showcase-card { overflow:hidden; border:1px solid var(--line); border-radius:var(--radius); background:#111; }
+    .showcase-card img { width:100%; aspect-ratio: 4/3; object-fit:cover; transition:.35s ease; }
+    .showcase-card:hover img { transform:scale(1.04); }
+    .showcase-body { padding:18px 20px 20px; }
+    .showcase-body h3 { font-size:22px; margin-bottom:6px; }
+    .showcase-body p { color:var(--muted); font-size:14px; }
+
+    .contact-grid { display:grid; grid-template-columns:.9fr 1.1fr; gap:18px; }
+    .contact-box, form { background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.02)); border:1px solid var(--line); border-radius:var(--radius); padding:26px; }
+    .contact-box p { color:var(--muted); margin:14px 0 24px; }
+    .contact-list { display:grid; gap:12px; }
+    .contact-item { padding:13px 14px; border:1px solid var(--line); border-radius:14px; background:#0e0e0e; }
+    .contact-item small { display:block; color:#777; margin-bottom:3px; }
+    .contact-item a:hover { text-decoration:underline; }
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .field { display:grid; gap:7px; }
+    .field.full { grid-column:1/-1; }
+    label { font-size:12px; color:#9b9b9b; }
+    input, select, textarea {
+      width:100%; border:1px solid var(--line); background:#0b0b0b; color:#fff;
+      padding:13px 14px; border-radius:12px; outline:none; font:inherit;
+    }
+    textarea { min-height:130px; resize:vertical; }
+    input:focus, select:focus, textarea:focus { border-color:rgba(255,255,255,.25); }
+    footer { padding:28px 0 40px; color:#777; border-top:1px solid var(--line); }
+    .footer-inner { display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; font-size:13px; }
+    .socials { display:flex; gap:18px; }
+    .socials a:hover { color:#fff; }
+    @media (max-width: 900px) {
+      .hero-grid, .work-grid, .contact-grid { grid-template-columns:1fr; }
+      .cards, .price-grid, .steps, .showcase-grid { grid-template-columns:1fr 1fr; }
+      .nav-links { display:none; }
+      .hero { padding-top:72px; }
+    }
+    @media (max-width: 600px) {
+      section { padding:70px 0; }
+      .cards, .price-grid, .steps, .showcase-grid, .form-grid, .preview-row { grid-template-columns:1fr; }
+      .section-head { display:block; }
+      .section-intro { margin-top:14px; }
+      h1 { font-size:46px; }
+      .preview-hero { height:150px; }
+      .nav-inner .btn { display:none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#home">RAZA <span>DIGITAL STUDIO</span></a>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#showcase">Showcase</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn-primary" href="#contact">Start a Project</a>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">WEB DESIGN • RESPONSIVE DEVELOPMENT • BUSINESS WEBSITES</div>
+          <h1>Modern Websites That Help Businesses Stand Out.</h1>
+          <p class="hero-copy">
+            Raza Digital Studio creates modern, responsive and business-focused websites
+            for restaurants, gyms, salons, local businesses and growing brands.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#work">View My Work</a>
+            <a class="btn btn-secondary" href="#contact">Start a Project</a>
+          </div>
+          <div class="hero-note">Small studio. Professional process. Built around your business.</div>
+        </div>
+
+        <div class="hero-visual" aria-label="Website preview">
+          <div class="browser">
+            <div class="browser-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <div class="preview">
+              <div class="preview-hero"><div class="preview-title">Your business,<br/>online better.</div></div>
+              <div class="preview-row"><div class="preview-card"></div><div class="preview-card"></div><div class="preview-card"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">About</div>
+            <h2>Building Better Digital Experiences</h2>
+          </div>
+          <p class="section-intro">
+            Raza Digital Studio helps businesses create a stronger online presence through
+            modern website design and development.
+          </p>
+        </div>
+        <div class="cards">
+          <article class="card"><div class="icon">01</div><h3>Modern Design</h3><p>Clean layouts, strong typography and a premium visual direction.</p></article>
+          <article class="card"><div class="icon">02</div><h3>Mobile First</h3><p>Responsive experiences that work smoothly on phones, tablets and desktops.</p></article>
+          <article class="card"><div class="icon">03</div><h3>Business Focused</h3><p>Structure important information so customers can find what they need quickly.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="kicker">Services</div><h2>What I Do</h2></div>
+          <p class="section-intro">Flexible website solutions for businesses that want a professional online presence.</p>
+        </div>
+        <div class="cards">
+          <article class="card"><div class="icon">01</div><h3>Business Websites</h3><p>Modern websites for small and growing businesses.</p></article>
+          <article class="card"><div class="icon">02</div><h3>Restaurant Websites</h3><p>Menu, gallery, location, reservation and WhatsApp-focused websites.</p></article>
+          <article class="card"><div class="icon">03</div><h3>Landing Pages</h3><p>Focused pages built around a product, service or campaign.</p></article>
+          <article class="card"><div class="icon">04</div><h3>Website Redesign</h3><p>Modernize outdated websites and improve their mobile experience.</p></article>
+          <article class="card"><div class="icon">05</div><h3>Responsive Design</h3><p>Consistent experiences across mobile, tablet and desktop.</p></article>
+          <article class="card"><div class="icon">06</div><h3>Business Setup</h3><p>Clear content structure, contact options and key business information.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="kicker">Selected Work</div><h2>Demo Projects</h2></div>
+          <p class="section-intro">Concept projects built to demonstrate design and user experience. Replace these with real client work as you grow.</p>
+        </div>
+        <div class="work-grid">
+          <article class="project">
+            <div class="project-visual"><div><div class="tag">CONCEPT PROJECT</div><h3>Sakura — Pan Asian Restaurant</h3></div></div>
+            <div class="project-meta"><p>Premium restaurant concept focused on menu browsing, food presentation, gallery, reservations and location.</p></div>
+          </article>
+          <article class="project">
+            <div class="project-visual"><div><div class="tag">DEMO PROJECT</div><h3>Fitness Studio</h3></div></div>
+            <div class="project-meta"><p>Modern fitness website concept for services, classes, membership information and contact.</p></div>
+          </article>
+          <article class="project">
+            <div class="project-visual"><div><div class="tag">DEMO PROJECT</div><h3>Luxury Salon</h3></div></div>
+            <div class="project-meta"><p>Premium salon concept for services, appointments, visual presentation and contact.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="showcase">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="kicker">Visual Showcase</div><h2>Designs for Different Businesses</h2></div>
+          <p class="section-intro">Sample visuals showing how a professional website can present different business types.</p>
+        </div>
+
+        <div class="showcase-grid">
+          <article class="showcase-card">
+            <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=85" alt="Elegant restaurant interior">
+            <div class="showcase-body"><h3>Restaurant</h3><p>Premium menus, food galleries, reservations and location-focused layouts.</p></div>
+          </article>
+
+          <article class="showcase-card">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=85" alt="Modern gym interior and equipment">
+            <div class="showcase-body"><h3>Gym</h3><p>Strong visual layouts for memberships, classes, trainers and facilities.</p></div>
+          </article>
+
+          <article class="showcase-card">
+            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=85" alt="Modern salon interior">
+            <div class="showcase-body"><h3>Salon</h3><p>Elegant service presentation, gallery sections and appointment-focused design.</p></div>
+          </article>
+
+          <article class="showcase-card">
+            <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=1200&q=85" alt="Restaurant dining and food presentation">
+            <div class="showcase-body"><h3>Restaurant Gallery</h3><p>Visual storytelling to make food, ambience and the brand memorable.</p></div>
+          </article>
+
+          <article class="showcase-card">
+            <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1200&q=85" alt="Fitness training area">
+            <div class="showcase-body"><h3>Fitness Experience</h3><p>Modern layouts that highlight equipment, classes and the member experience.</p></div>
+          </article>
+
+          <article class="showcase-card">
+            <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1200&q=85" alt="Salon styling workspace">
+            <div class="showcase-body"><h3>Beauty & Style</h3><p>Clean presentation for services, transformations and booking journeys.</p></div>
+          </article>
+        </div>
+
+        <p style="margin-top:18px;color:#6f6f6f;font-size:12px;">
+          Sample photos are used for visual demonstration. Replace them with client-approved images for real projects.
+        </p>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="kicker">Process</div><h2>Simple Process. Professional Results.</h2></div>
+        </div>
+        <div class="steps">
+          <article class="card step"><div class="step-num">STEP 01</div><h3>Discover</h3><p>Understand the business, audience and goals.</p></article>
+          <article class="card step"><div class="step-num">STEP 02</div><h3>Design</h3><p>Create the visual direction, layout and user experience.</p></article>
+          <article class="card step"><div class="step-num">STEP 03</div><h3>Build</h3><p>Develop the responsive website and required features.</p></article>
+          <article class="card step"><div class="step-num">STEP 04</div><h3>Launch</h3><p>Review, finalize and publish the completed website.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div><div class="kicker">Pricing</div><h2>Simple Starting Packages</h2></div>
+          <p class="section-intro">Final pricing depends on project requirements and requested features.</p>
+        </div>
+        <div class="price-grid">
+          <article class="card price"><div class="label">Starter</div><div class="amount">₹999</div><p>For simple business websites.</p><ul><li>One-page website</li><li>Business information</li><li>Contact / WhatsApp</li><li>Location</li></ul><a class="btn btn-secondary" href="#contact">Discuss Project</a></article>
+          <article class="card price featured"><div class="label">Business</div><div class="amount">₹1,999</div><p>For a complete online presence.</p><ul><li>Multiple sections</li><li>Gallery</li><li>Menu / Services</li><li>WhatsApp + Location</li></ul><a class="btn btn-primary" href="#contact">Discuss Project</a></article>
+          <article class="card price"><div class="label">Premium</div><div class="amount">₹3,999+</div><p>For advanced business websites.</p><ul><li>Advanced sections</li><li>Custom visual direction</li><li>Additional features</li><li>Project-specific scope</li></ul><a class="btn btn-secondary" href="#contact">Discuss Project</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="kicker">Contact</div><h2>Have a Project in Mind?</h2></div>
+          <p class="section-intro">Tell me about your business and what you want to build.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-box">
+            <h3>Let's talk about your business.</h3>
+            <p>Share your requirements and I'll review them before we discuss the next step.</p>
+            <div class="contact-list">
+              <div class="contact-item"><small>WhatsApp</small><a href="https://wa.me/919978604450" target="_blank" rel="noopener">+91 99786 04450</a></div>
+              <div class="contact-item"><small>Best for</small><span>Restaurants • Gyms • Salons • Local Businesses</span></div>
+            </div>
+          </div>
+          <form id="contactForm">
+            <div class="form-grid">
+              <div class="field"><label for="name">Name</label><input id="name" required /></div>
+              <div class="field"><label for="business">Business Name</label><input id="business" required /></div>
+              <div class="field"><label for="email">Email</label><input id="email" type="email" /></div>
+              <div class="field"><label for="phone">WhatsApp / Phone</label><input id="phone" /></div>
+              <div class="field"><label for="type">Business Type</label><input id="type" placeholder="Restaurant, Gym, Salon..." /></div>
+              <div class="field"><label for="budget">Budget</label><select id="budget"><option>Under ₹1,000</option><option>₹1,000–₹2,500</option><option>₹2,500–₹5,000</option><option>₹5,000+</option></select></div>
+              <div class="field full"><label for="message">Message</label><textarea id="message" placeholder="Tell me what you want to build..." required></textarea></div>
+              <div class="field full"><button class="btn btn-primary" type="submit">Send Project Enquiry</button></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© 2026 Raza Digital Studio. All rights reserved.</div>
+      <div class="socials">
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+        <a href="https://wa.me/919978604450" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const business = document.getElementById("business").value.trim();
+      const type = document.getElementById("type").value.trim();
+      const budget = document.getElementById("budget").value;
+      const message = document.getElementById("message").value.trim();
+
+      const text =
+        "Hello Raza, I want to discuss a website project.%0A%0A" +
+        "Name: " + encodeURIComponent(name) + "%0A" +
+        "Business: " + encodeURIComponent(business) + "%0A" +
+        "Type: " + encodeURIComponent(type) + "%0A" +
+        "Budget: " + encodeURIComponent(budget) + "%0A" +
+        "Message: " + encodeURIComponent(message);
+
+      window.open("https://wa.me/919978604450?text=" + text, "_blank");
+    });
+  </script>
+</body>
+</html>
